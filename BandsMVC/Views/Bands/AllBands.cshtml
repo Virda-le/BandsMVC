@@ -1,0 +1,47 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<Band>;
+@{
+}
+<style>
+    
+    .band-list{
+        background-color: powderblue;
+        border-color: blue;
+        border-top: solid;
+        border-bottom: solid;
+    }
+    
+</style>
+<h1>@ViewData["Title"]</h1>
+<div class="band-list">
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Year</th>
+            <th>Country</th>
+            <th>Manage</th>
+        </tr>
+        @foreach(var band in Model)
+        {
+            <tr>
+                <td>@band.Name</td>
+                <td>@band.Year</td>
+                <td>@band.Country</td>
+                <td>
+                    @Html.ActionLink("Details","ShowDetails",new { id = band.Id }) |
+                    @Html.ActionLink("Edit","Edit",new { id = band.Id }) |
+                    @Html.ActionLink("Delete","Delete", new { id = band.Id })
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div>
+    <br/>
+    <button type="button" class="btn btn-info btn-block" onclick="location.href='@Url.Action("Create","Bands")'">
+        Create new
+    </button>
+    
+</div>

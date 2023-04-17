@@ -1,0 +1,56 @@
+﻿@model Band
+@{
+    
+}
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .edit {
+        width: max-content;
+        padding: 20px;
+        background-color: darksalmon;
+        border: solid;
+        border-color: antiquewhite;
+        font-size: 25px;
+    }
+</style>
+<h1>Band</h1>
+<div class="edit">
+    @using (Html.BeginForm("Create", "Bands", FormMethod.Post))
+    {
+        <p>
+            @Html.HiddenFor(m=>m.Id)
+        </p>
+        <p>
+            @Html.LabelFor(m=> m.Name, "Name")
+            <br />
+            @Html.TextBoxFor(m => m.Name)
+        </p>       
+        <p>
+            @Html.LabelFor(m=> m.Year, "Date of Birth")
+            <br />
+            @Html.TextBoxFor(m => m.Year, new{type ="number"})
+        </p>
+        <p>
+            @Html.LabelFor(m=> m.Country, "Country")
+            <br />
+            @Html.DropDownList("Country",new SelectList(new string[]{ "USA", "Great Britain", "Russia","England","Sweden"}, selectedValue: Model.Country))            
+        </p>
+        <p>
+            @Html.LabelFor(m=>m.Artists,"Artists")<br/>            
+            @Html.ListBoxFor(m=>m.SelectedArtistsId,new SelectList(ViewBag.Artists,"Id","Name"),new{@class="form-group" })
+        </p>        
+        <p>            
+            <input type="submit" value="Save" />
+        </p>
+    }
+</div>
+<p>
+    @Html.ActionLink("Back to List", "AllBands")
+</p>
+
+

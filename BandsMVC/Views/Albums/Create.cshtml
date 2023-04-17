@@ -1,0 +1,43 @@
+﻿@model Album
+@{
+}
+<style>
+    .edit{        
+        width:max-content;
+        padding: 20px;
+        background-color:darksalmon;
+        border: solid;
+        border-color:antiquewhite;
+        font-size:25px;
+    }
+</style>
+<h2>Album</h2>
+<div class="edit">
+    @using(Html.BeginForm("Create", "Albums", FormMethod.Post))
+    {
+        @Html.HiddenFor(m => m.Id)
+        <div class="databox">
+            <label>Name</label><br />
+            @Html.TextBoxFor(m => m.Name, new{@class = "text-box"})
+        </div>
+
+        <div class="databox">
+            <label>Year</label><br />
+            @Html.TextBoxFor(m => m.Year, new{type = "number",@class = "text-box"})
+        </div>
+
+        <div class="databox">
+
+            <label>Band</label><br />
+            @Html.DropDownListFor(m=> m.Band.Id, new SelectList(ViewBag.Bands,"Id","Name",selectedValue: Model.Band))
+        </div>
+        <br/>
+
+        <div class="databox">
+            <input type="submit" value="Save"/>
+        </div>
+    }
+</div>
+<div>
+    <a asp-action="Index">Back to list</a>
+</div>

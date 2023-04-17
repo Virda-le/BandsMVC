@@ -1,0 +1,49 @@
+﻿@model List<Artist>;
+@{
+}
+
+<style>
+    .artist-list {
+        background-color:navajowhite;        
+        border-top: solid;        
+        border-bottom: solid;
+        border-color:darksalmon;
+    }
+</style>
+<h1>Artists</h1>
+<div class="artist-list">
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Date of Birth</th>
+            <th>Type</th>
+            <th> </th>
+
+        </tr>
+        @foreach (var m in Model)
+        {
+            <tr>
+                <td>@m.Id</td>
+                <td>@m.Name</td>
+                <td>@m.Surname</td>
+                <td>@m.BirthDate</td>
+                <td>@m.Type</td>
+
+                <td>                    
+                    @Html.ActionLink("Edit","Edit", m) |
+                    @Html.ActionLink("Delete","Delete", new {id = m.Id})
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<div>
+    <p></p>
+    <button type="button" class="btn btn-info btn-block" onclick="location.href='@Url.Action("Create","Artists")'">
+        Create new
+    </button>
+    
+</div>
+
