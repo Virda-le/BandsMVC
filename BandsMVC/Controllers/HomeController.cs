@@ -7,10 +7,12 @@ namespace BandsMVC.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private BandsDbContext db;
 
         public HomeController(ILogger<HomeController> logger)
         {
             _logger = logger;
+            db = new BandsDbContext();
         }
 
         public IActionResult Index()

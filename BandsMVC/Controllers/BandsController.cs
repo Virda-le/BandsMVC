@@ -1,15 +1,21 @@
 ﻿using BandsMVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace BandsMVC.Controllers
 {
     public class BandsController : Controller
     {
-        
+        private BandsDbContext db;
+        public BandsController(BandsDbContext context)
+        {            
+            db = context;           
+
+        }
         public IActionResult AllBands()
         {
             ViewData["Title"] = "All bands";
-            return View(MemoryDB.Bands);
+            return View(db.Bands);
         }
         [HttpGet]
         public IActionResult Create()

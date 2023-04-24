@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BandsMVC.Models
 {
@@ -9,7 +10,8 @@ namespace BandsMVC.Models
         public string? Country { get; set; }
         public int Year { get; set; }
         public List<Artist> Artists { get; set; }
-        public List<Album> Albums { get; set; }        
+        public List<Album> Albums { get; set; }
+        [NotMapped]
         public int[]? SelectedArtistsId { get; set; }
         public Band()
         {

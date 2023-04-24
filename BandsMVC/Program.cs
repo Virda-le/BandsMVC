@@ -1,3 +1,5 @@
+using BandsMVC.Models;
+
 namespace BandsMVC
 {
     public class Program
@@ -8,7 +10,7 @@ namespace BandsMVC
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddDbContext<BandsDbContext>();
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
